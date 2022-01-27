@@ -39,7 +39,7 @@ public class Test01 {
         proyectos02.add(proyecto04);
 
         /*crear trabajador*/
-        Trabajador trabajador01 = new Trabajador(1, "Samuel",2500, proyectos01);
+        Trabajador trabajador01 = new Trabajador("Samuel",2500, proyectos01);
         em.persist(trabajador01);
         em.getTransaction().commit();
 

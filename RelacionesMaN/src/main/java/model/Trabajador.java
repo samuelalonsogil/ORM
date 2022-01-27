@@ -25,16 +25,8 @@ public class Trabajador implements Serializable {
         // TODO Auto-generated constructor stub
     }
 
-    public Trabajador(int codigo, String nombre, int salario) {
+    public Trabajador(String nombre, int salario, List<Proyecto> proyectos) {
         super();
-        this.codigo = codigo;
-        this.nombre = nombre;
-        this.salario = salario;
-    }
-
-    public Trabajador(int codigo, String nombre, int salario, List<Proyecto> proyectos) {
-        super();
-        this.codigo = codigo;
         this.nombre = nombre;
         this.salario = salario;
         this.proyectos = proyectos;
