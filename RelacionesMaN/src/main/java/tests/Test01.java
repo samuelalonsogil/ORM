@@ -13,6 +13,36 @@ public class Test01 {
     public static EntityManagerFactory emf;
     public static EntityManager em;
 
+    public static void listadoTrabajadores(){
+        emf = Persistence.createEntityManagerFactory("HibernateEjemplo1");
+        em = emf.createEntityManager();
+
+        String hql = "FROM Trabajador";
+        List<Trabajador> trabajadores = em.createQuery(hql).getResultList();
+
+        for(Trabajador tra : trabajadores){
+            System.out.println(tra);
+            for (Proyecto pro : tra.getProyectos() ){
+                System.out.println("\t" + pro);
+            }
+        }
+    }
+
+    public static void listadoProyectos(){
+        emf = Persistence.createEntityManagerFactory("HibernateEjemplo1");
+        em = emf.createEntityManager();
+
+        String hql = "FROM Proyecto";
+        List<Proyecto> proyectos = em.createQuery(hql).getResultList();
+
+        for(Proyecto pro : proyectos){
+            System.out.println(pro);
+            for (Trabajador tra : pro.getTrabajadores() ){
+                System.out.println("\t" + tra);
+            }
+        }
+    }
+
     public static void insertData(){
         emf = Persistence.createEntityManagerFactory("HibernateEjemplo1");
         em = emf.createEntityManager();
@@ -49,5 +79,6 @@ public class Test01 {
 
     public static void main(String[] args) {
         insertData();
+        listadoProyectos();
     }
 }
