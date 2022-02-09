@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Ejemplo01ORM/test/Test08Contains.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/Ejemplo03Relaciones1Bidireccionales/test/Test02Persist.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test01.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test02Persist.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test03Find.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test04PersistFind.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test05Merge.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test06Remove.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test07Detach.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test08Contains.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo01/test/Test09CreateQuery.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo02/model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo02/test" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/model/Direccion01.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/model/Empleado01.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/test/Test01Find.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/test/Test02Persist.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/test/test03Remove.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo03/test/test04CreateQuery.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/introducirDatos" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/modeloDAO/AutorDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/modeloDAO/LibroDao.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/modeloVO/Autor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/modeloVO/Libro.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ejemplo04Relaciones1N/test/Test01.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="PROJECT" charset="windows-1252" />
+  </component>
+</project>
