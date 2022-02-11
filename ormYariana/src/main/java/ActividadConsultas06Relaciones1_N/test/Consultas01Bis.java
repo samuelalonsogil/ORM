@@ -61,11 +61,48 @@ public class Consultas01Bis {
 
     }
 
+    private static void consulta17() {
+        Iterator iterator = InmuebleDao.listadoInmueblesZonas01(IntroducirDatos.introducirDatos("Nombre de la zona: "));
+
+        while(iterator.hasNext() ){
+            Object[] fila = (Object[]) iterator.next();
+            Propietario propietario = (Propietario) fila[0];
+            Inmueble inmueble = (Inmueble) fila[1];
+
+            System.out.println(propietario + "\t" + inmueble );
+        }
+    }
+
+    private static void consulta16() {
+        Iterator iterator = PropietarioDao.listadoPropietariosSinInmuebles();
+
+        Object[] fila = (Object[]) iterator.next();
+        Propietario propietario = (Propietario) fila[0];
+        Inmueble inmueble = (Inmueble) fila[1];
+
+        System.out.println(propietario + "\t" + inmueble );
+    }
+
+    private static void consulta15() {
+        Iterator iterator = PropietarioDao.listadoPropietariosInmueblesJoin01();
+
+        while (iterator.hasNext()){
+            Object[] fila = (Object[]) iterator.next();
+            Propietario propietario = (Propietario) fila[0];
+            Inmueble inmueble = (Inmueble) fila[1];
+
+            System.out.println(propietario + "\t" + inmueble );
+        }
+    }
+
     private static void consulta14() {
         Conexion conexion = new Conexion();
         String hql = "FROM Propietario p";
 
-        List<Propietario> propietarios = PropietarioDao.
+        List<Propietario> propietarios = PropietarioDao.listadoPropietariosInmuebles01();
+        for (Propietario propietario : propietarios){
+            System.out.println(propietario);
+        }
     }
 
     private static void consulta13() {

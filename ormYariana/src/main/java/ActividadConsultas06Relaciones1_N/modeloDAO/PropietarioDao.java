@@ -1,9 +1,10 @@
 package ActividadConsultas06Relaciones1_N.modeloDAO;
 
+import ActividadConsultas06Relaciones1_N.conexion.Conexion;
 import ActividadConsultas06Relaciones1_N.modeloVO.Propietario;
-import Ejemplo05RelacionesNM.conexion.Conexion;
 
-import javax.persistence.Query;
+
+import javax.management.Query;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,10 +40,28 @@ public class PropietarioDao {
         return propietario;
     }
 
-    private static List<Propietario> listadoPropietariosInmuebles01(){
+    public static List<Propietario> listadoPropietariosInmuebles01(){
         Conexion conexion = new Conexion();
         String hql = "FROM Propietario p";
         Query query = conexion.getConexion().createQuery(hql);
         List<Propietario> propietarios = query
+    }
+
+    public static Iterator listadoPropietariosInmueblesJoin01() {
+        Conexion conexion = new Conexion();
+        String hql = "FROM Propietario pro JOIN pro.inmuebles";
+        Query query = conexion.getConexion().createQuery(hql);
+        Iterator iterator = query.getResultList().iterator();
+        conexion.desconectar();
+        return iterator;
+    }
+
+    public static Iterator listadoPropietariosSinInmuebles() {
+        Conexion conexion = new Conexion();
+        String hql = "FROM Inmueble i JOIN i.propietario WHERE i.codInmueble IS NULL";
+        Query query = conexion.getConexion().createQuery(hql);
+        Iterator iterator = query.getResultList().iterator();
+        conexion.desconectar();
+        return iterator;
     }
 }

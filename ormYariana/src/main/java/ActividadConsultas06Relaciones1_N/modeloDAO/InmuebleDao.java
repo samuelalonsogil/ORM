@@ -48,5 +48,9 @@ public class InmuebleDao {
         return iterator;
 
     }
+
+    public static Iterator listadoInmueblesZonas01(){
+
+    }
 }
 
