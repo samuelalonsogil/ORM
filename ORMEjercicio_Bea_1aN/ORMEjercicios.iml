@@ -9,6 +9,7 @@
           <factory-entry name="HibernateBD" />
           <factory-entry name="HibernateBDEqu" />
           <factory-entry name="HibernateEjemplo1" />
+          <factory-entry name="equiposFutbol" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />

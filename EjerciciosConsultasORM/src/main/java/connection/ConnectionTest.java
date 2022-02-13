@@ -10,5 +10,7 @@ public class ConnectionTest {
     public static void main(String[] args) {
         ConnectionTest connectionTest = new ConnectionTest();
         System.out.println(connectionTest.checkConnection());
+
+
     }
 }

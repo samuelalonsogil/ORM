@@ -1,4 +1,4 @@
-package transformDateFormat;
+package utilities;
 
 import java.text.DateFormat;
 import java.text.ParseException;

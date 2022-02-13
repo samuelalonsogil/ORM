@@ -1,34 +1,37 @@
 package test;
 
 import daoModel.ContratoDAO;
-import transformDateFormat.TransformDates;
+import utilities.TransformDates;
+import utilities.Utilities;
 import voModel.Contrato;
-
 import java.text.ParseException;
-import java.util.Scanner;
 
-public class Test01 {
-    public Scanner scanner = new Scanner(System.in);
+public class ActualizeContractDate {
+    public Utilities utilities;
     public Contrato contrato;
     public ContratoDAO contratoDAO;
     public TransformDates transformDates;
 
     public static void main(String[] args) throws ParseException {
-        Test01 test01 = new Test01();
+        ActualizeContractDate test01 = new ActualizeContractDate();
         test01.actualizeDateContract();
     }
 
-    public String introduceData(){
-        System.out.println("Introduce data: ");
-        return scanner.next();
+    public void initVariables(){
+        utilities = new Utilities();
+        contrato = new Contrato();
+        contratoDAO = new ContratoDAO();
+        transformDates = new TransformDates();
     }
 
     /*ejercicio 01*/
     public void actualizeDateContract() throws ParseException {
-        contrato = contratoDAO.findContrato(introduceData() );
+        initVariables();
+
+        contrato = contratoDAO.findContrato(utilities.introduceData() );
 
         if (contrato!=null){
-            contrato.setFechaVencimiento( transformDates.StringToDate( introduceData() ) );
+            contrato.setFechaVencimiento( transformDates.StringToDate( utilities.introduceData() ) );
             contratoDAO.modifyContract(contrato);
 
             System.out.println("Date actualized");
