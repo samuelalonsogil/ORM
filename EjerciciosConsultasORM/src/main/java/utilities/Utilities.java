@@ -6,7 +6,6 @@ import voModel.Contrato;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class Utilities {
@@ -29,8 +28,6 @@ public class Utilities {
         myConnection = new Connection();
         return myConnection.getConnection().createQuery(hql).getResultList().iterator();
     }
-
-
 
 
     public void connectionTransactions(Contrato contrato){

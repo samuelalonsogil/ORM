@@ -4,10 +4,6 @@ import connection.Connection;
 import utilities.Utilities;
 import voModel.Contrato;
 
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
-import javax.persistence.Query;
-
 @SuppressWarnings("ALL")
 public class ContratoDAO {
 
