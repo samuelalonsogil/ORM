@@ -10,7 +10,7 @@ public class IncrementarPrecioNombre {
 
     public void increment(){
         String zona = utilities.introduceData();
-        int incremento = utilities.introduceDataNums();
+        double incremento = utilities.introduceDataDouble();
         inmuebleDAO.incrementarPrecio(zona, incremento);
     }
 

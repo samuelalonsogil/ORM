@@ -2,8 +2,6 @@ package daoModel;
 
 import connection.Connection;
 import utilities.Utilities;
-
-import javax.persistence.PersistenceException;
 import java.util.Iterator;
 
 public class InmuebleDAO {
@@ -23,7 +21,7 @@ public class InmuebleDAO {
 
     /*3ª) Incrementar el precio de los inmuebles de una zona cuyo nombre introducimos
     como parámetro.*/
-    public void incrementarPrecio(String zona, int incremento) {
+    public void incrementarPrecio(String zona, double incremento) {
         String hql = "UPDATE Contrato c SET c.precio = c.precio + :incremento WHERE c.inmueble.zona.nombre= :zona";
 
         utilities.stablishConnection(hql).setParameter("zona", zona);

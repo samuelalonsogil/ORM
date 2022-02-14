@@ -15,13 +15,18 @@ public class Utilities {
 
 
     public String introduceData(){
-        System.out.println("Introduce data: ");
+        System.out.println("Introduce string: ");
         return scanner.next();
     }
 
-    public int introduceDataNums(){
-        System.out.println("Introduce data: ");
+    public int introduceDataInt(){
+        System.out.println("Introduce int: ");
         return scanner.nextInt();
+    }
+
+    public double introduceDataDouble(){
+        System.out.println("Introduce double: ");
+        return scanner.nextDouble();
     }
 
     public Query stablishConnection(String hql){

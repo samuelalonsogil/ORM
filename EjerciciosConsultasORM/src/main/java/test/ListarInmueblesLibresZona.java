@@ -2,19 +2,21 @@ package test;
 
 import daoModel.InmuebleDAO;
 import utilities.Utilities;
-import voModel.Inmueble;
-
 import java.util.Iterator;
-import java.util.List;
+
 
 public class ListarInmueblesLibresZona {
-
     public InmuebleDAO inmuebleDAO;
     public Utilities utilities;
 
     /*versión devolviendo Query*/
     public void listContracts(){
-        Iterator<Inmueble> inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData() );
+        Iterator inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData() );
+
+        while (inmuebles.hasNext() ){
+            Object[] row = (Object[]) inmuebles.next();
+            System.out.println(row[0] + " " + row[1] + " " + row[2] + " " + row[3]);
+        }
 
     }
 

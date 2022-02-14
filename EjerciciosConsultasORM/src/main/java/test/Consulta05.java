@@ -11,13 +11,13 @@ public class Consulta05 {
     public ContratoDAO contratoDAO = new ContratoDAO();
     public Utilities utilities;
     public Inquilino inquilino = new Inquilino();
-    public InquilinoDAO inquilinoDAO = new InquilinoDAO();
+    //public InquilinoDAO inquilinoDAO = new InquilinoDAO();
 
     public void consulta05(){
         String numContrato = utilities.introduceData();
         if (contratoDAO.findContrato(numContrato ) == null){
             contrato.setCodContrato(numContrato);
-            inquilino =
+            //inquilino =
         }
     }
 
