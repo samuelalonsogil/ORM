@@ -13,9 +13,15 @@ public class Utilities {
     public Connection myConnection;
     public Scanner scanner = new Scanner(System.in);
 
+
     public String introduceData(){
         System.out.println("Introduce data: ");
         return scanner.next();
+    }
+
+    public int introduceDataNums(){
+        System.out.println("Introduce data: ");
+        return scanner.nextInt();
     }
 
     public Query stablishConnection(String hql){
@@ -46,5 +52,25 @@ public class Utilities {
 
         myConnection.disconnect();
     }
+
+
+    public void connectionTransactionsUpdate(String hql){
+        myConnection = new Connection();
+
+        try{
+            myConnection.getConnection().getTransaction().begin();
+            stablishConnection(hql).executeUpdate();
+            myConnection.getConnection().getTransaction().commit();
+
+        }catch (PersistenceException pe){
+
+            myConnection.getConnection().getTransaction().rollback();
+            pe.printStackTrace();
+        }
+
+        myConnection.disconnect();
+    }
+
+
 
 }

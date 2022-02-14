@@ -14,11 +14,8 @@ public class ListarInmueblesLibresZona {
 
     /*versión devolviendo Query*/
     public void listContracts(){
-        List<Inmueble> inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData() );
+        Iterator<Inmueble> inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData() );
 
-        for (Inmueble inmueble : inmuebles){
-            System.out.println(inmueble);
-        }
     }
 
     public void initVariables(){
