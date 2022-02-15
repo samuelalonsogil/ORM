@@ -3,6 +3,7 @@ package utilities;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class TransformDates {
@@ -35,6 +36,14 @@ public class TransformDates {
     /*Java Date to SQLDate*/
     public java.sql.Date javaDateToSQLDate(Date date){
         return new java.sql.Date(date.getTime());
+    }
+
+    /*sumar años*/
+    public Date sumarAnhos(Date fecha, int anhos){
+        Calendar calendar =  Calendar.getInstance();
+        calendar.setTime(fecha);
+        calendar.add(Calendar.YEAR, anhos);
+        return calendar.getTime();
     }
 
 }

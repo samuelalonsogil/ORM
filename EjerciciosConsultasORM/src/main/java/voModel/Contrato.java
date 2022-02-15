@@ -20,7 +20,7 @@ public class Contrato implements Serializable {
     private Inquilino inquilino;
 
     /*como un contrato solo puede ser de un inmueble creamos un atributo de tipo Inmueble*/
-    @ManyToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne ( fetch = FetchType.EAGER)
     @JoinColumn (name = "coCodInmueble")
     private Inmueble inmueble;
 
