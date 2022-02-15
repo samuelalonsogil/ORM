@@ -14,18 +14,18 @@ public class Utilities {
     public Scanner scanner = new Scanner(System.in);
 
 
-    public String introduceData(){
-        System.out.println("Introduce string: ");
+    public String introduceData(String data){
+        System.out.println(data);
         return scanner.next();
     }
 
-    public int introduceDataInt(){
-        System.out.println("Introduce int: ");
+    public int introduceDataInt(String data){
+        System.out.println(data);
         return scanner.nextInt();
     }
 
-    public double introduceDataDouble(){
-        System.out.println("Introduce double: ");
+    public double introduceDataDouble(String data){
+        System.out.println(data);
         return scanner.nextDouble();
     }
 

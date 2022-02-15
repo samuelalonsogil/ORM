@@ -22,7 +22,7 @@ public class TransformDates {
     }
 
     /*String to Date java.util*/
-    public Date StringToDate(String date) throws ParseException {
+    public Date StringToDate(String date) {
         try{
             SimpleDateFormat stringFormat = new SimpleDateFormat("dd/MM/yy");
             return stringFormat.parse(date);
@@ -38,11 +38,11 @@ public class TransformDates {
         return new java.sql.Date(date.getTime());
     }
 
-    /*sumar años*/
-    public Date sumarAnhos(Date fecha, int anhos){
+    /*increment years*/
+    public Date incrementYears(Date date, int years){
         Calendar calendar =  Calendar.getInstance();
-        calendar.setTime(fecha);
-        calendar.add(Calendar.YEAR, anhos);
+        calendar.setTime(date);
+        calendar.add(Calendar.YEAR, years);
         return calendar.getTime();
     }
 
