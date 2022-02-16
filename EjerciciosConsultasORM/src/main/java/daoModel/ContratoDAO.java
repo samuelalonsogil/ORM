@@ -6,6 +6,7 @@ import voModel.Contrato;
 import voModel.Inmueble;
 
 import java.util.Iterator;
+import java.util.List;
 
 @SuppressWarnings("ALL")
 public class ContratoDAO {
@@ -27,17 +28,22 @@ public class ContratoDAO {
     }
 
 
-
-
-
     /*5ª) Insertar un nuevo contrato, la fecha del contrato es el día que se da de alta y la
             duración del contrato es de 4 años. Hay que utilizar funciones de fecha. El inmueble
             obligatoriamente debe estar dado de alta, lo mismo que el propietario, en el caso que
             el inquilino no esté en la BBDD hay que insertarlo.*/
-
     public void newContrato(Contrato contrato) {
         inmueble = inmuebleDAO.findInmueble(contrato.getInmueble().getCodInmueble());
         utilities.connectionTransactions(contrato);
     }
+
+    /*7ª) Insertar en una nueva tabla ContratosVencen, mismas columnas que la tabla
+        Contratos, los contratos que venzan en el presente año.*/
+    public List<Contrato> crearCOntratosVEncen(){
+        String hql = "FROM Contrato c WHERE YEAR(c.fechaVencimiento) = YEAR(CURRENT_DATE())";
+        return (List<Contrato>) utilities.stablishConnection(hql);
+    }
+
+
 
 }
