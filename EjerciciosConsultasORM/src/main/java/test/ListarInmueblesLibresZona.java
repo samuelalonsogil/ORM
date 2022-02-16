@@ -9,7 +9,7 @@ public class ListarInmueblesLibresZona {
     public Utilities utilities = new Utilities();
 
     public void listContracts(){
-        Iterator inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData() );
+        Iterator inmuebles = inmuebleDAO.listInmueblesZona( utilities.introduceData("zone name: ") );
 
         while (inmuebles.hasNext() ){
             Object[] row = (Object[]) inmuebles.next();

@@ -45,4 +45,11 @@ public class InmuebleDAO {
     public Inmueble findInmueble(String codInmueble) {
         return myConnection.getConnection().find( Inmueble.class, codInmueble );
     }
+
+    /*11º) Listar para cada inquilino el número de inmuebles diferentes que nos ha alquilado.*/
+    public Iterator listDifferentNumInmuebles(){
+        String hql = "SELECT c.inquilino.dni, c.inquilino.nombre, COUNT(DISTINCT c.inmueble.codInmueble) FROM Contrato c" +
+                "GROUP BY c.inquilino.dni";
+        return utilities.stablishConnectionIterator(hql);
+    }
 }

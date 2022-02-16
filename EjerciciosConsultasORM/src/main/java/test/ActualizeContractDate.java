@@ -28,10 +28,10 @@ public class ActualizeContractDate {
     public void actualizeDateContract() throws ParseException {
         initVariables();
 
-        contrato = contratoDAO.findContrato(utilities.introduceData() );
+        contrato = contratoDAO.findContrato(utilities.introduceData("code contrato: ") );
 
         if (contrato!=null){
-            contrato.setFechaVencimiento( transformDates.StringToDate( utilities.introduceData() ) );
+            contrato.setFechaVencimiento( transformDates.StringToDate( utilities.introduceData("new date: ") ) );
             contratoDAO.modifyContract(contrato);
 
             System.out.println("Date actualized");

@@ -6,6 +6,7 @@ import voModel.Contrato;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Utilities {
@@ -14,18 +15,18 @@ public class Utilities {
     public Scanner scanner = new Scanner(System.in);
 
 
-    public String introduceData(){
-        System.out.println("Introduce string: ");
+    public String introduceData(String data){
+        System.out.println(data);
         return scanner.next();
     }
 
-    public int introduceDataInt(){
-        System.out.println("Introduce int: ");
+    public int introduceDataInt(String data){
+        System.out.println(data);
         return scanner.nextInt();
     }
 
-    public double introduceDataDouble(){
-        System.out.println("Introduce double: ");
+    public double introduceDataDouble(String data){
+        System.out.println(data);
         return scanner.nextDouble();
     }
 
@@ -38,6 +39,11 @@ public class Utilities {
     public Iterator stablishConnectionIterator(String hql){
         myConnection = new Connection();
         return myConnection.getConnection().createQuery(hql).getResultList().iterator();
+    }
+
+    public List stablishConnectionList(String hql){
+        myConnection = new Connection();
+        return myConnection.getConnection().createQuery(hql).getResultList();
     }
 
 

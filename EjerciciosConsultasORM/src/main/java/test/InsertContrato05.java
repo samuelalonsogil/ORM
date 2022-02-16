@@ -16,32 +16,37 @@ import java.util.Date;
 
 public class InsertContrato05 {
 
-    public Contrato contrato = new Contrato();
+
     public ContratoDAO contratoDAO = new ContratoDAO();
     public Utilities utilities = new Utilities();
-    public Inquilino inquilino = new Inquilino();
     public InquilinoDAO inquilinoDAO = new InquilinoDAO();
     public InmuebleDAO inmuebleDAO = new InmuebleDAO();
     public TransformDates transformDates = new TransformDates();
 
 
-    public void consulta05() throws ParseException {
-        String numContrato = utilities.introduceData();
-        if (contratoDAO.findContrato(numContrato ) == null){
-            contrato.setCodContrato(numContrato);
-            inquilino = inquilinoDAO.findInquilino(numContrato);
+    public void consulta05() {
+        Contrato contrato = new Contrato();
+        Inquilino inquilino;
+
+        String codContrato = utilities.introduceData("code contrato: ");
+
+        if ( contratoDAO.findContrato(codContrato) == null){
+            contrato.setCodContrato(codContrato);
+            inquilino = inquilinoDAO.findInquilino(utilities.introduceData("dni inquilino: ") );
+
             if (inquilino!=null){
                 contrato.setInquilino(inquilino);
-                String codInmueble = utilities.introduceData();
-                Inmueble inmueble = inmuebleDAO.findInmueble(codInmueble);
+                Inmueble inmueble = inmuebleDAO.findInmueble( utilities.introduceData("code inmueble: ") );
+
                 if (inmueble!=null){
                     contrato.setInmueble(inmueble);
 
-                    String hoy = new SimpleDateFormat("dd//MM/yyyy").format(Calendar.getInstance().getTime());
-                    contrato.setFechaContrato(transformDates.StringToDate(hoy) );
-                    Date fecha = transformDates.sumarAnhos(transformDates.StringToDate(hoy), 4);
+                    String today = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+                    contrato.setFechaContrato(transformDates.StringToDate(today) );
+
+                    Date fecha = transformDates.incrementYears(transformDates.StringToDate(today), 4);
                     contrato.setFechaVencimiento(fecha);
-                    contrato.setPrecio(utilities.introduceDataDouble() );
+                    contrato.setPrecio(utilities.introduceDataDouble("price: ") );
                 }else{
                     System.out.println("Inmueble inexistente");
                 }
@@ -54,13 +59,10 @@ public class InsertContrato05 {
         contratoDAO.newContrato(contrato);
     }
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         InsertContrato05 insertContrato05 = new InsertContrato05();
-        try {
-            insertContrato05.consulta05();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        insertContrato05.consulta05();
+
     }
 
 }

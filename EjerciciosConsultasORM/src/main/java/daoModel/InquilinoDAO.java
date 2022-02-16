@@ -7,6 +7,7 @@ import voModel.Inquilino;
 import java.util.Iterator;
 import java.util.List;
 
+
 public class InquilinoDAO {
 
     public Connection myConnection = new Connection();
@@ -33,7 +34,7 @@ public class InquilinoDAO {
     public List<Inquilino> listadoInquilinoSinContrato(){
         String hql = "FROM Inquilino i WHERE i.dni NOT IN(SELECT c.inquilino.dni FROM Contrto c)";
 
-        List<Inquilino> inquilinos = utilities.stablishConnection(hql).getResultList();
+        List<Inquilino> inquilinos = utilities.stablishConnectionList(hql);
         for (Inquilino inquilino:inquilinos){
             System.out.println(inquilino);
         }
