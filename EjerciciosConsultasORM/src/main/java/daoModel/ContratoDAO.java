@@ -39,14 +39,14 @@ public class ContratoDAO {
 
     /*7ª) Insertar en una nueva tabla ContratosVencen, mismas columnas que la tabla
         Contratos, los contratos que venzan en el presente año.*/
-    public List<Contrato> crearCOntratosVEncen() {
+    public List<Contrato> createContratosVencen() {
         String hql = "FROM Contrato c WHERE YEAR(c.fechaVencimiento) = YEAR(CURRENT_DATE())";
-        return (List<Contrato>) utilities.stablishConnection(hql);
+        return (List<Contrato>) utilities.stablishConnectionList(hql);
     }
 
     /*9º) Mostrar el contrato más caro, indicando el nombre del inquilino*/
     public List<Contrato> mostExpensiveContrato() {
-        String hql = "FROM Contrato WHERE c.precio = (SELECT MAX(co.precio) FROM Contrato co)";
+        String hql = "FROM Contrato WHERE precio = (SELECT MAX(co.precio) FROM Contrato co)";
         return  utilities.stablishConnectionList(hql);
     }
 

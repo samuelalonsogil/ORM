@@ -23,16 +23,16 @@ public class InquilinoDAO {
     public Iterator divideNames(){
                                                         /*primer apellido*/
         String hql =
-                "SELECT SUBSTRING( i.nombre,1, LOCATE(' ', i.nombre)), " +
-                "SUBSTRING(i.nombre,LOCATE(' ', i.nombre),LOCATE(',',i.nombre) - LOCATE('',i.nombre))," +
-                " SUBSTRING(i.nombre, LOCATE(',', i.nombre)+1, LENGHT(i.nombre)), " +
-                "SUBSTRING(i.nombre, 1, LOCATE(i.nombre, ',')) FROM Inquilino i";
+                "SELECT SUBSTRING( i.nombre,1, LOCATE(' ', i.nombre) ), " +
+                "SUBSTRING(i.nombre,LOCATE(' ', i.nombre),LOCATE(',',i.nombre) - LOCATE(' ',i.nombre))," +
+                " SUBSTRING(i.nombre, LOCATE(',', i.nombre)+1, LENGTH(i.nombre)), " +
+                "SUBSTRING(i.nombre, 1, LOCATE(',', i.nombre)-1 ) FROM Inquilino i";
         return utilities.stablishConnectionIterator(hql);
     }
 
     /*8º) Eliminar los inquilinos que no tengan ningún contrato.*/
     public List<Inquilino> listadoInquilinoSinContrato(){
-        String hql = "FROM Inquilino i WHERE i.dni NOT IN(SELECT c.inquilino.dni FROM Contrto c)";
+        String hql = "FROM Inquilino i WHERE i.dni NOT IN(SELECT c.inquilino.dni FROM Contrato c)";
 
         List<Inquilino> inquilinos = utilities.stablishConnectionList(hql);
         for (Inquilino inquilino:inquilinos){

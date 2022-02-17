@@ -74,9 +74,9 @@ public class Utilities {
             myConnection.getConnection().getTransaction().commit();
 
         }catch (PersistenceException pe){
-
-            myConnection.getConnection().getTransaction().rollback();
             pe.printStackTrace();
+            myConnection.getConnection().getTransaction().rollback();
+
         }
 
         myConnection.disconnect();

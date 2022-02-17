@@ -2,7 +2,6 @@ package daoModel;
 
 import connection.Connection;
 import utilities.Utilities;
-import voModel.Contrato;
 import voModel.Inmueble;
 
 import java.util.Iterator;
