@@ -1,15 +1,19 @@
 package voModel;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @SuppressWarnings("ALL")
 @Entity
-@Table(name = "VehiculoCliente")
-public class VehiculoCliente {
+@Table(name = "VehiculosClientes")
+public class VehiculoCliente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "idVehiculoCliente")
+    @Column(name = "vcId", nullable = false)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int idVehiculoCliente;
 
     @Column(name = "vcDNI")
@@ -29,7 +33,7 @@ public class VehiculoCliente {
     private Vehiculo vehiculo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vcMatricula")
+    @JoinColumn(name = "vcDni")
     private Cliente cliente;
 
     public VehiculoCliente() {}

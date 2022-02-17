@@ -1,13 +1,16 @@
 package voModel;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @SuppressWarnings("ALL")
 @Entity
 @Table(name = "Oficinas")
-public class Oficina {
+public class Oficina implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "idOficina")
@@ -29,11 +32,11 @@ public class Oficina {
     private String telefono;
 
     @OneToMany(mappedBy = "oficina")
-    private List<Oficina> oficinas;
+    private List<Vehiculo> oficinas;
 
     public Oficina() {}
 
-    public Oficina(int idOficina, String direccion, String ciudad, int codigoPostal, String provinica, String telefono, List<Oficina> oficinas) {
+    public Oficina(int idOficina, String direccion, String ciudad, int codigoPostal, String provinica, String telefono, List<Vehiculo> oficinas) {
         this.idOficina = idOficina;
         this.direccion = direccion;
         this.ciudad = ciudad;
@@ -91,11 +94,11 @@ public class Oficina {
         this.telefono = telefono;
     }
 
-    public List<Oficina> getOficinas() {
+    public List<Vehiculo> getOficinas() {
         return oficinas;
     }
 
-    public void setOficinas(List<Oficina> oficinas) {
+    public void setOficinas(List<Vehiculo> oficinas) {
         this.oficinas = oficinas;
     }
 

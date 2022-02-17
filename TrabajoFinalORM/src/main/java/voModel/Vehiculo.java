@@ -1,12 +1,15 @@
 package voModel;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
 @SuppressWarnings("ALL")
 @Entity
 @Table(name = "Vehiculos")
-public class Vehiculo {
+public class Vehiculo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "veMatricula")
@@ -17,7 +20,7 @@ public class Vehiculo {
 
     @Column(name = "veGrupo", nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private Enum grupo;
+    private Grupo grupo;
 
     @Column(name = "vePlazas", nullable = false)
     private int plazas;
@@ -44,7 +47,7 @@ public class Vehiculo {
 
     public Vehiculo() {}
 
-    public Vehiculo(String matricula, String marca, Enum grupo, int plazas, int puertas, int maletero, int edad, Oficina oficina, List<VehiculoCliente> vehiculoClientes) {
+    public Vehiculo(String matricula, String marca, Grupo grupo, int plazas, int puertas, int maletero, int edad, Oficina oficina, List<VehiculoCliente> vehiculoClientes) {
         this.matricula = matricula;
         this.marca = marca;
         this.grupo = grupo;
@@ -72,11 +75,11 @@ public class Vehiculo {
         this.marca = marca;
     }
 
-    public Enum getGrupo() {
+    public Grupo getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(Enum grupo) {
+    public void setGrupo(Grupo grupo) {
         this.grupo = grupo;
     }
 
@@ -133,7 +136,7 @@ public class Vehiculo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehiculo vehiculo = (Vehiculo) o;
-        return plazas == vehiculo.plazas && puertas == vehiculo.puertas && maletero == vehiculo.maletero && edad == vehiculo.edad && Objects.equals(matricula, vehiculo.matricula) && Objects.equals(marca, vehiculo.marca) && Objects.equals(grupo, vehiculo.grupo) && Objects.equals(oficina, vehiculo.oficina) && Objects.equals(vehiculoClientes, vehiculo.vehiculoClientes);
+        return plazas == vehiculo.plazas && puertas == vehiculo.puertas && maletero == vehiculo.maletero && edad == vehiculo.edad && Objects.equals(matricula, vehiculo.matricula) && Objects.equals(marca, vehiculo.marca) && grupo == vehiculo.grupo && Objects.equals(oficina, vehiculo.oficina) && Objects.equals(vehiculoClientes, vehiculo.vehiculoClientes);
     }
 
     @Override
