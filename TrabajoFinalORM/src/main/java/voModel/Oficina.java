@@ -10,33 +10,32 @@ import java.util.Objects;
 @Table(name = "Oficinas")
 public class Oficina implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @Column(name = "idOficina")
+    @Column(name = "idOficina", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idOficina;
 
-    @Column(name = "ofDireccion")
+    @Column(name = "ofDireccion", length = 50, nullable = false)
     private String direccion;
 
-    @Column(name = "ofCiudad")
+    @Column(name = "ofCiudad", length = 20, nullable = false)
     private String ciudad;
 
-    @Column(name = "ofCodigoPostal")
+    @Column(name = "ofCodigoPostal", nullable = false)
     private int codigoPostal;
 
-    @Column(name = "ofProvincia")
+    @Column(name = "ofProvincia", length = 20, nullable = false)
     private String provinica;
 
-    @Column(name = "ofTelefono")
-    private String telefono;
+    @Column(name = "ofTelefono", nullable = false)
+    private int telefono;
 
     @OneToMany(mappedBy = "oficina")
     private List<Vehiculo> oficinas;
 
     public Oficina() {}
 
-    public Oficina(int idOficina, String direccion, String ciudad, int codigoPostal, String provinica, String telefono, List<Vehiculo> oficinas) {
+    public Oficina(int idOficina, String direccion, String ciudad, int codigoPostal, String provinica, int telefono, List<Vehiculo> oficinas) {
         this.idOficina = idOficina;
         this.direccion = direccion;
         this.ciudad = ciudad;
@@ -86,11 +85,11 @@ public class Oficina implements Serializable {
         this.provinica = provinica;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 

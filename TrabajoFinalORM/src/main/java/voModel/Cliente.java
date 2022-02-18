@@ -10,31 +10,29 @@ import java.util.Objects;
 @Table(name = "Clientes")
 public class Cliente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @Column(name = "clDni")
+    @Column(name = "clDni", length = 9, nullable = false)
     private String dni;
 
-    @Column(name = "clNombre")
+    @Column(name = "clNombre", length = 50, nullable = false)
     private String nombre;
 
-    @Column(name = "clDireccion")
+    @Column(name = "clDireccion", length = 50, nullable = false)
     private String direccion;
 
-    @Column(name = "clCiudad")
+    @Column(name = "clCiudad", length = 20, nullable = false)
     private String ciudad;
 
-    @Column(name = "clCodigoPostal")
-    private String codigoPostal;
+    @Column(name = "clCodigoPostal", nullable = false)
+    private int codigoPostal;
 
-    @Column(name = "clProvincia")
+    @Column(name = "clProvincia", length = 20, nullable = false)
     private String provincia;
 
     @Column(name = "clTelefono")
-    private String telefono;
+    private int telefono;
 
-    @Column(name = "clNumTarjeta")
+    @Column(name = "clNumTarjeta",length = 16, nullable = false)
     private String numTarjeta;
 
     @OneToMany(mappedBy = "cliente")
@@ -42,7 +40,7 @@ public class Cliente implements Serializable {
 
     public Cliente() {}
 
-    public Cliente(String dni, String nombre, String direccion, String ciudad, String codigoPostal, String provincia, String telefono, String numTarjeta, List<VehiculoCliente> vehiculoClientes) {
+    public Cliente(String dni, String nombre, String direccion, String ciudad, int codigoPostal, String provincia, int telefono, String numTarjeta, List<VehiculoCliente> vehiculoClientes) {
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -86,11 +84,11 @@ public class Cliente implements Serializable {
         this.ciudad = ciudad;
     }
 
-    public String getCodigoPostal() {
+    public int getCodigoPostal() {
         return codigoPostal;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
+    public void setCodigoPostal(int codigoPostal) {
         this.codigoPostal = codigoPostal;
     }
 
@@ -102,11 +100,11 @@ public class Cliente implements Serializable {
         this.provincia = provincia;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
@@ -131,7 +129,7 @@ public class Cliente implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return Objects.equals(dni, cliente.dni) && Objects.equals(nombre, cliente.nombre) && Objects.equals(direccion, cliente.direccion) && Objects.equals(ciudad, cliente.ciudad) && Objects.equals(codigoPostal, cliente.codigoPostal) && Objects.equals(provincia, cliente.provincia) && Objects.equals(telefono, cliente.telefono) && Objects.equals(numTarjeta, cliente.numTarjeta) && Objects.equals(vehiculoClientes, cliente.vehiculoClientes);
+        return codigoPostal == cliente.codigoPostal && telefono == cliente.telefono && Objects.equals(dni, cliente.dni) && Objects.equals(nombre, cliente.nombre) && Objects.equals(direccion, cliente.direccion) && Objects.equals(ciudad, cliente.ciudad) && Objects.equals(provincia, cliente.provincia) && Objects.equals(numTarjeta, cliente.numTarjeta) && Objects.equals(vehiculoClientes, cliente.vehiculoClientes);
     }
 
     @Override
@@ -146,9 +144,9 @@ public class Cliente implements Serializable {
                 ", nombre='" + nombre + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", ciudad='" + ciudad + '\'' +
-                ", codigoPostal='" + codigoPostal + '\'' +
+                ", codigoPostal=" + codigoPostal +
                 ", provincia='" + provincia + '\'' +
-                ", telefono='" + telefono + '\'' +
+                ", telefono=" + telefono +
                 ", numTarjeta='" + numTarjeta + '\'' +
                 ", vehiculoClientes=" + vehiculoClientes +
                 '}';

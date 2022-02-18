@@ -9,38 +9,32 @@ import java.util.Objects;
 @Table(name = "VehiculosClientes")
 public class VehiculoCliente implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Column(name = "vcId", nullable = false)
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private int idVehiculoCliente;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idVehiculoCliente;
 
-    @Column(name = "vcDNI")
-    private String dni;
+    @Column(name = "vcDias", nullable = false)
+    private Integer dias;
 
-    @Column(name = "vcDias")
-    private int dias;
-
-    @Column(name = "vcSeguro")
+    @Column(name = "vcSeguro", length = 20, nullable = false)
     private String seguro;
 
-    @Column(name = "vcPrecio")
-    private int precio;
+    @Column(name = "vcPrecio", nullable = false)
+    private Integer precio;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vcMatricula")
+    @JoinColumn(name = "vcMatricula", nullable = false)
     private Vehiculo vehiculo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vcDni")
+    @JoinColumn(name = "vcDni", nullable = false)
     private Cliente cliente;
 
     public VehiculoCliente() {}
 
-    public VehiculoCliente(int idVehiculoCliente, String dni, int dias, String seguro, int precio, Vehiculo vehiculo, Cliente cliente) {
+    public VehiculoCliente(Integer idVehiculoCliente, Integer dias, String seguro, Integer precio, Vehiculo vehiculo, Cliente cliente) {
         this.idVehiculoCliente = idVehiculoCliente;
-        this.dni = dni;
         this.dias = dias;
         this.seguro = seguro;
         this.precio = precio;
@@ -48,27 +42,19 @@ public class VehiculoCliente implements Serializable {
         this.cliente = cliente;
     }
 
-    public int getIdVehiculoCliente() {
+    public Integer getIdVehiculoCliente() {
         return idVehiculoCliente;
     }
 
-    public void setIdVehiculoCliente(int idVehiculoCliente) {
+    public void setIdVehiculoCliente(Integer idVehiculoCliente) {
         this.idVehiculoCliente = idVehiculoCliente;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public int getDias() {
+    public Integer getDias() {
         return dias;
     }
 
-    public void setDias(int dias) {
+    public void setDias(Integer dias) {
         this.dias = dias;
     }
 
@@ -80,11 +66,11 @@ public class VehiculoCliente implements Serializable {
         this.seguro = seguro;
     }
 
-    public int getPrecio() {
+    public Integer getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(Integer precio) {
         this.precio = precio;
     }
 
@@ -109,19 +95,18 @@ public class VehiculoCliente implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VehiculoCliente that = (VehiculoCliente) o;
-        return idVehiculoCliente == that.idVehiculoCliente && dias == that.dias && precio == that.precio && Objects.equals(dni, that.dni) && Objects.equals(seguro, that.seguro) && Objects.equals(vehiculo, that.vehiculo) && Objects.equals(cliente, that.cliente);
+        return Objects.equals(idVehiculoCliente, that.idVehiculoCliente) && Objects.equals(dias, that.dias) && Objects.equals(seguro, that.seguro) && Objects.equals(precio, that.precio) && Objects.equals(vehiculo, that.vehiculo) && Objects.equals(cliente, that.cliente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idVehiculoCliente, dni, dias, seguro, precio, vehiculo, cliente);
+        return Objects.hash(idVehiculoCliente, dias, seguro, precio, vehiculo, cliente);
     }
 
     @Override
     public String toString() {
         return "VehiculoCliente{" +
                 "idVehiculoCliente=" + idVehiculoCliente +
-                ", dni='" + dni + '\'' +
                 ", dias=" + dias +
                 ", seguro='" + seguro + '\'' +
                 ", precio=" + precio +

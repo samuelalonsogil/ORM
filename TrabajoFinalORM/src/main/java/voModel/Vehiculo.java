@@ -9,8 +9,6 @@ import java.util.Objects;
 @Table(name = "Vehiculos")
 public class Vehiculo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @Column(name = "veMatricula")
     private String matricula;
