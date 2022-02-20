@@ -1,11 +1,14 @@
 package utilities;
 
 import connection.Connection;
+import voModel.Vehiculo;
+import voModel.VehiculoCliente;
 
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Utilities {
@@ -22,6 +25,13 @@ public class Utilities {
     public int introduceDataInt(String data){
         System.out.println(data);
         return scanner.nextInt();
+    }
+
+
+
+    public String introduceDataChar(String data){
+        System.out.println(data);
+        return String.valueOf(scanner.nextLine().charAt(0)).toUpperCase(Locale.ROOT);
     }
 
     public double introduceDataDouble(String data){
@@ -46,12 +56,12 @@ public class Utilities {
     }
 
 
-    /*public void connectionTransactions(){
+    public void connectionTransactions(VehiculoCliente vehiculoCliente){
         myConnection = new Connection();
 
         try{
             myConnection.getConnection().getTransaction().begin();
-            myConnection.getConnection().merge();
+            myConnection.getConnection().merge(vehiculoCliente);
             myConnection.getConnection().getTransaction().commit();
 
         }catch (PersistenceException pe){
@@ -61,7 +71,7 @@ public class Utilities {
         }
 
         myConnection.disconnect();
-    }*/
+    }
 
 
     public void connectionTransactionsUpdate(String hql){
@@ -81,6 +91,23 @@ public class Utilities {
         myConnection.disconnect();
     }
 
+
+
+    public void connectionTransactionsUpdateQuery(Query hql){
+        myConnection = new Connection();
+        try{
+            myConnection.getConnection().getTransaction().begin();
+            hql.executeUpdate();
+            myConnection.getConnection().getTransaction().commit();
+
+        }catch (PersistenceException pe){
+            pe.printStackTrace();
+            myConnection.getConnection().getTransaction().rollback();
+
+        }
+
+        myConnection.disconnect();
+    }
 
 
 }
