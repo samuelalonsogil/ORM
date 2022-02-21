@@ -43,8 +43,8 @@ public class Query05 {
                     vehiculo.setPlazas(utilities.introduceDataInt("Introduce plazas: "));
                     vehiculo.setPuertas(utilities.introduceDataInt("Introduce puertas: "));
                     vehiculo.setMaletero(utilities.introduceDataInt("Introduce capacidad maletero: "));
-                    vehiculo.setOficina(new Oficina());
-                    vehiculo.setVehiculoClientes(vehiculoCliente.getVehiculo().getVehiculoClientes());
+                    vehiculo.setOficina( new Oficina() );
+                    vehiculo.setVehiculoClientes( vehiculoCliente.getVehiculo().getVehiculoClientes() );
                 }
             }else{
                 System.out.println("Introduce los datos del cliente nuevo: ");

@@ -1,7 +1,6 @@
 package utilities;
 
 import connection.Connection;
-import voModel.Vehiculo;
 import voModel.VehiculoCliente;
 
 import javax.persistence.PersistenceException;
@@ -13,7 +12,7 @@ import java.util.Scanner;
 
 public class Utilities {
 
-    public Connection myConnection;
+    public Connection myConnection = new Connection();
     public Scanner scanner = new Scanner(System.in);
 
 
@@ -56,45 +55,7 @@ public class Utilities {
     }
 
 
-    public void connectionTransactions(VehiculoCliente vehiculoCliente){
-        myConnection = new Connection();
-
-        try{
-            myConnection.getConnection().getTransaction().begin();
-            myConnection.getConnection().merge(vehiculoCliente);
-            myConnection.getConnection().getTransaction().commit();
-
-        }catch (PersistenceException pe){
-
-            myConnection.getConnection().getTransaction().rollback();
-            pe.printStackTrace();
-        }
-
-        myConnection.disconnect();
-    }
-
-
-    public void connectionTransactionsUpdate(String hql){
-        myConnection = new Connection();
-
-        try{
-            myConnection.getConnection().getTransaction().begin();
-            stablishConnection(hql).executeUpdate();
-            myConnection.getConnection().getTransaction().commit();
-
-        }catch (PersistenceException pe){
-            pe.printStackTrace();
-            myConnection.getConnection().getTransaction().rollback();
-
-        }
-
-        myConnection.disconnect();
-    }
-
-
-
     public void connectionTransactionsUpdateQuery(Query hql){
-        myConnection = new Connection();
         try{
             myConnection.getConnection().getTransaction().begin();
             hql.executeUpdate();
@@ -108,6 +69,8 @@ public class Utilities {
 
         myConnection.disconnect();
     }
+
+
 
 
 }

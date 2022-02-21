@@ -61,7 +61,7 @@ public class VehiculoDAO {
 
     /*11. Actualizar el precio de los alquileres de los vehículos de una determinada marca.*/
     public void actualizarPrecioAlquileres(int nuevoPrecio, String marca){
-        String hql = "UPDATE VehiculoCliente vc SET vc.precio=:nuevoPrecio WHERE vc.vehiculo.marca IN (SELECT v.marca FROM Vehiculo v WHERE v.marca=:marca)";
+        String hql = "UPDATE VehiculoCliente vc SET vc.precio= vc.precio +:nuevoPrecio WHERE vc.vehiculo.marca=:marca";
 
         utilities.connectionTransactionsUpdateQuery(utilities.stablishConnection(hql).setParameter("nuevoPrecio", nuevoPrecio).setParameter("marca", marca));
 
