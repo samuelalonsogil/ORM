@@ -1,6 +1,7 @@
 package tests;
 
 import daoModel.ClienteDao;
+import daoModel.OficinaDAO;
 import daoModel.VehiculoClienteDAO;
 import daoModel.VehiculoDAO;
 import utilities.Utilities;
@@ -18,7 +19,9 @@ public class Query05 {
     public Cliente cliente = new Cliente();
     public Vehiculo vehiculo = new Vehiculo();
     public ClienteDao clienteDao = new ClienteDao();
-    VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    public VehiculoDAO vehiculoDAO = new VehiculoDAO();
+    public Oficina oficina = new Oficina();
+    public OficinaDAO oficinaDAO = new OficinaDAO();
 
     public void newAlquiler(){
         int codeAlquiler= utilities.introduceDataInt("Introduce code de alquiler: ");
@@ -43,7 +46,23 @@ public class Query05 {
                     vehiculo.setPlazas(utilities.introduceDataInt("Introduce plazas: "));
                     vehiculo.setPuertas(utilities.introduceDataInt("Introduce puertas: "));
                     vehiculo.setMaletero(utilities.introduceDataInt("Introduce capacidad maletero: "));
-                    vehiculo.setOficina( new Oficina() );
+
+                    oficina = oficinaDAO.findOficina(utilities.introduceDataInt("Introduce el id de la oficina") );
+                    if(oficina!=null){
+                        vehiculo.setOficina( oficina );
+                    }else{
+                        System.out.println("Oficina no existe, crea una: ");
+                        oficina.setIdOficina(utilities.introduceDataInt("Introduce el id de la oficina"));
+                        oficina.setCiudad(utilities.introduceData("Introduce la ciudad: "));
+                        oficina.setCodigoPostal(utilities.introduceDataInt("Introduce code postal: "));
+                        oficina.setTelefono(utilities.introduceDataInt("Introduce el tlf: "));
+                        oficina.setDireccion(utilities.introduceData("introduce la dirección: "));
+                        oficina.setOficinas(vehiculoCliente.getVehiculo().getOficina().getOficinas());
+                        vehiculo.setOficina(oficina);
+                    }
+
+
+
                     vehiculo.setVehiculoClientes( vehiculoCliente.getVehiculo().getVehiculoClientes() );
                 }
             }else{
