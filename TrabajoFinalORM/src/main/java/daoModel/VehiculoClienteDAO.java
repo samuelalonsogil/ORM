@@ -32,7 +32,10 @@ public class VehiculoClienteDAO {
     public void newAlquiler(VehiculoCliente vehiculoCliente){
         vehiculoCliente = findAlquiler(vehiculoCliente.getIdVehiculoCliente());
         utilities.connectionTransactions(vehiculoCliente);
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb3ee6feddacf817cf9ce9c5fd36d118d4e4e0eb
     }
 
     /*6. Obtener un listado de los alquileres mostrando los siguientes datos: Matrídula, DNI, Nombre
