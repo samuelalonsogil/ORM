@@ -70,6 +70,23 @@ public class Utilities {
         myConnection.disconnect();
     }
 
+    public void connectionTransactions(VehiculoCliente vehiculoCliente){
+        myConnection = new Connection();
+
+        try{
+            myConnection.getConnection().getTransaction().begin();
+            myConnection.getConnection().merge(vehiculoCliente);
+            myConnection.getConnection().getTransaction().commit();
+
+        }catch (PersistenceException pe){
+
+            myConnection.getConnection().getTransaction().rollback();
+            pe.printStackTrace();
+        }
+
+        myConnection.disconnect();
+    }
+
 
 
 
