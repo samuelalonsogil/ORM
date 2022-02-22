@@ -3,7 +3,6 @@ package daoModel;
 import connection.Connection;
 import utilities.Utilities;
 import voModel.Cliente;
-import voModel.VehiculoCliente;
 
 import java.util.List;
 

@@ -2,9 +2,7 @@ package daoModel;
 
 import connection.Connection;
 import utilities.Utilities;
-import voModel.Cliente;
 import voModel.Oficina;
-import voModel.Vehiculo;
 
 public class OficinaDAO {
     public Connection myConnection = new Connection();
