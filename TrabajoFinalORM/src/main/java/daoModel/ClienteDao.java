@@ -23,4 +23,10 @@ public class ClienteDao {
     public Cliente findAlquiler(String dni){
         return myConnection.getConnection().find(Cliente.class,dni);
     }
+
+
+    public void newCliente(Cliente cliente){
+        utilities.connectionTransactions(cliente);
+
+    }
 }
