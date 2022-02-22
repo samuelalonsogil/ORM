@@ -32,7 +32,7 @@ public class VehiculoDAO {
     /*3. Listar los vehículos que no hayan sido alquilados.*/
     public Iterator generateListVehiculosSinAlquilar(){
         String hql = "SELECT v.matricula, v.marca, vc.dias FROM Vehiculo v " +
-                "JOIN VehiculoCliente vc ON v.matricula = vc.vehiculo WHERE vcDias = 0";
+                "LEFT JOIN VehiculoCliente vc ON v.matricula = vc.vehiculo WHERE vc.vehiculo.matricula IS NULL";
 
         return utilities.stablishConnectionIterator(hql);
     }
