@@ -13,7 +13,7 @@ public class Query02 {
 
         while (iterator.hasNext()){
             Object[]row = (Object[]) iterator.next();
-            System.out.println("nombre: " + row[0] + "\napellidos: " + row[1] + "\nnumero_de_tarjetas:" + row[2] +
+            System.out.println("code avión: " + row[0] + "\nmodelo avión: " + row[1] + "\ncode vuelo:" + row[2] +  "\nvuelo origen:" + row[3]+
                     "\n----------------------------------------------------------------");
         }
     }

@@ -1,0 +1,49 @@
+DROP DATABASE IF Exists UD03BDVuelos;
+CREATE DATABASE IF NOT EXISTS UD03BDVuelos;
+
+USE UD03BDVuelos;
+
+CREATE TABLE IF NOT EXISTS Clientes(
+clDni VARCHAR(9) PRIMARY KEY,
+clNombre VARCHAR(20) NOT NULL,
+clApellidos VARCHAR(30) NOT NULL,
+clDireccion VARCHAR(50) NOT NULL,
+clTelefono INT NOT NULL,
+clNumTarjeta INT);
+
+CREATE TABLE IF NOT EXISTS Aeropuertos(
+aeCodigo INT PRIMARY KEY,
+aeNombre VARCHAR(50) NOT NULL,
+aeLocalidad VARCHAR(30) NOT NULL,
+aePais VARCHAR(30) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Aviones(
+avCodigo INT PRIMARY KEY,
+avModelo VARCHAR(30) NOT NULL);
+
+CREATE TABLE IF NOT EXISTS Vuelos(
+vuCodigo INT PRIMARY KEY,
+vuCodAvion INT NOT NULL,
+vuFecSalida DATE NOT NULL,
+vuFecLlegada DATE NOT NULL,
+vuOrigen INT NOT NULL,
+vuDestino INT NOT NULL,
+FOREIGN KEY (vuCodAvion) REFERENCES Aviones (avCodigo),
+FOREIGN KEY (vuOrigen) REFERENCES Aeropuertos (aeCodigo),
+FOREIGN KEY (vuDestino) REFERENCES Aeropuertos (aeCodigo));
+
+CREATE TABLE IF NOT EXISTS Asientos(
+asCodigo INT PRIMARY KEY,
+asCodAvion INT NOT NULL,
+asFila INT NOT NULL,
+asColumna INT NOT NULL,
+asLibre BOOLEAN DEFAULT 1,
+FOREIGN KEY (asCodAvion) REFERENCES Aviones (avCodigo));
+
+CREATE TABLE IF NOT EXISTS TarjetasEmbarque(
+teCodigo INT PRIMARY KEY, 
+teDNI VARCHAR(9) NOT NULL,
+teCodAsiento INT NOT NULL,
+teCodVuelo INT NOT NULL,
+FOREIGN KEY (teDNI) REFERENCES Clientes (clDni),
+FOREIGN KEY (teCodVuelo) REFERENCES Vuelos (vuCodigo));

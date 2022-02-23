@@ -20,10 +20,16 @@ public class ClienteDAO {
 
     /*3º) Listar los clientes que tienen que salir del aeropuerto
         de Vigo en una determinada fecha que introduciremos por teclado. (Por ejemplo hoy)." */
-    public Iterator listSalirAeropuerto(String date){
-        String hql = "SELECT cl.nombre, cl.apellidos, cl.tarjetasEmbarque.codAvion,cl.tarjetasEmbarque.vuelo.fechaSalida" +
-                " FROM Cliente cl WHERE cl.tarjetasEmbarque.vuelo.fechaSalida=:date";
+    public Iterator listSalirAeropuerto(Date date){
+        String hql = "SELECT cl FROM Vuelo vu JOIN TarjetaEmbarque te on vu.codigo = te.teCodigo " +
+                "JOIN Aeropuerto ae ON ae.codigo = vu.origen JOIN Cliente cl  ON cl.dni = te.dni " +
+                "WHERE ae.localidad = 'Viego' AND vu.fechaSalida = :date";
         return utilities.stablishConnection(hql).setParameter("date", date).getResultList().iterator();
 
     }
 }
+/*select c.
+        from vuelos join tarjetasembarque t on vuelos.vuCodigo = t.teCodVuelo
+        join aeropuertos a on a.aeCodigo = vuelos.vuOrigen
+        join clientes c on c.clDni = t.teDNI
+        where aeLocalidad ='Vigo' and vuFecSalida = '2022-02-20'*/
