@@ -70,12 +70,16 @@ public class Utilities {
         myConnection.disconnect();
     }
 
-    public void connectionTransactions(VehiculoCliente vehiculoCliente){
+
+    public void connectionTransactions(Object object ){
+
         myConnection = new Connection();
 
         try{
             myConnection.getConnection().getTransaction().begin();
-            myConnection.getConnection().merge(vehiculoCliente);
+
+            myConnection.getConnection().merge(object);
+
             myConnection.getConnection().getTransaction().commit();
 
         }catch (PersistenceException pe){

@@ -3,7 +3,6 @@ package daoModel;
 import connection.Connection;
 import utilities.Utilities;
 import voModel.Cliente;
-import voModel.VehiculoCliente;
 
 import java.util.List;
 
@@ -22,5 +21,11 @@ public class ClienteDao {
     /*ej 5*/
     public Cliente findAlquiler(String dni){
         return myConnection.getConnection().find(Cliente.class,dni);
+    }
+
+
+    public void newCliente(Cliente cliente){
+        utilities.connectionTransactions(cliente);
+
     }
 }

@@ -2,7 +2,6 @@ package daoModel;
 
 import connection.Connection;
 import utilities.Utilities;
-import voModel.Vehiculo;
 import voModel.VehiculoCliente;
 
 import java.util.Iterator;
@@ -32,6 +31,7 @@ public class VehiculoClienteDAO {
     public void newAlquiler(VehiculoCliente vehiculoCliente){
         vehiculoCliente = findAlquiler(vehiculoCliente.getIdVehiculoCliente());
         utilities.connectionTransactions(vehiculoCliente);
+
     }
 
     /*6. Obtener un listado de los alquileres mostrando los siguientes datos: Matrídula, DNI, Nombre

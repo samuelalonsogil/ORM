@@ -30,6 +30,7 @@ public class Query05 {
             vehiculoCliente.setIdVehiculoCliente(codeAlquiler);
             cliente = clienteDao.findAlquiler(utilities.introduceData("Introduce el dni: "));
             if (cliente!=null){
+
                 vehiculoCliente.setCliente(cliente);
                 vehiculo = vehiculoDAO.findVehiculo(utilities.introduceData("Introduce la matrícula: "));
                 if (vehiculo!=null){
@@ -38,6 +39,7 @@ public class Query05 {
                     vehiculoCliente.setPrecio(utilities.introduceDataInt("Introduce el precio: "));
                     vehiculoCliente.setSeguro(utilities.introduceData("Introduce el tipo de seguro: "));
                 }else{
+                    vehiculo = new Vehiculo();
                     System.out.println("Introduce los datos del vehiculo nuevo: ");
                     vehiculo.setEdad(utilities.introduceDataInt("Introduce edad: "));
                     vehiculo.setGrupo(Vehiculo.Grupo.valueOf(utilities.introduceData("Introduce grupo: ")));
@@ -46,18 +48,21 @@ public class Query05 {
                     vehiculo.setPlazas(utilities.introduceDataInt("Introduce plazas: "));
                     vehiculo.setPuertas(utilities.introduceDataInt("Introduce puertas: "));
                     vehiculo.setMaletero(utilities.introduceDataInt("Introduce capacidad maletero: "));
+                    vehiculoDAO.newVehiculo(vehiculo);
 
                     oficina = oficinaDAO.findOficina(utilities.introduceDataInt("Introduce el id de la oficina") );
                     if(oficina!=null){
                         vehiculo.setOficina( oficina );
                     }else{
+                        oficina = new Oficina();
+                        vehiculo = new Vehiculo();
                         System.out.println("Oficina no existe, crea una: ");
                         oficina.setIdOficina(utilities.introduceDataInt("Introduce el id de la oficina"));
                         oficina.setCiudad(utilities.introduceData("Introduce la ciudad: "));
                         oficina.setCodigoPostal(utilities.introduceDataInt("Introduce code postal: "));
                         oficina.setTelefono(utilities.introduceDataInt("Introduce el tlf: "));
                         oficina.setDireccion(utilities.introduceData("introduce la dirección: "));
-                        oficina.setOficinas(vehiculoCliente.getVehiculo().getOficina().getOficinas());
+                        oficinaDAO.newOficina(oficina);
                         vehiculo.setOficina(oficina);
                     }
 
@@ -66,16 +71,21 @@ public class Query05 {
                     vehiculo.setVehiculoClientes( vehiculoCliente.getVehiculo().getVehiculoClientes() );
                 }
             }else{
+                cliente = new Cliente();
+                vehiculoCliente = new VehiculoCliente();
                 System.out.println("Introduce los datos del cliente nuevo: ");
                 cliente.setDni(utilities.introduceData("Introduce un dni: "));
                 cliente.setCiudad(utilities.introduceData("Introduce una ciudad: "));
                 cliente.setCodigoPostal(utilities.introduceDataInt("Introduce code postal: "));
                 cliente.setNombre(utilities.introduceData("Introduce un nombre: "));
-                cliente.setVehiculoClientes( vehiculoCliente.getVehiculo().getVehiculoClientes() );
                 cliente.setNumTarjeta(utilities.introduceData("Introduce el num de tarjeta: "));
                 cliente.setProvincia(utilities.introduceData("Introduce provincia: "));
                 cliente.setTelefono(utilities.introduceDataInt("Introduce tlf: "));
+
+                clienteDao.newCliente(cliente);
             }
+
+            vehiculoClienteDAO.newAlquiler(vehiculoCliente);
 
         }else{
             System.out.println("Ya existe ese código");

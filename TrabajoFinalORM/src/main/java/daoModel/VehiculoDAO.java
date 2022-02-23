@@ -2,6 +2,7 @@ package daoModel;
 
 import connection.Connection;
 import utilities.Utilities;
+import voModel.Cliente;
 import voModel.Vehiculo;
 
 import javax.persistence.PersistenceException;
@@ -97,5 +98,10 @@ public class VehiculoDAO {
     /*ej 5*/
     public Vehiculo findVehiculo(String matricula){
         return myConnection.getConnection().find(Vehiculo.class,matricula);
+    }
+
+    public void newVehiculo(Vehiculo vehiculo){
+        utilities.connectionTransactions(vehiculo);
+
     }
 }
