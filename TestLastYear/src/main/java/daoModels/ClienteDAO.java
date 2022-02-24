@@ -21,9 +21,10 @@ public class ClienteDAO {
     /*3º) Listar los clientes que tienen que salir del aeropuerto
         de Vigo en una determinada fecha que introduciremos por teclado. (Por ejemplo hoy)." */
     public Iterator listSalirAeropuerto(Date date){
-        String hql = "SELECT cl FROM Vuelo vu JOIN TarjetaEmbarque te on vu.codigo = te.teCodigo " +
-                "JOIN Aeropuerto ae ON ae.codigo = vu.origen JOIN Cliente cl  ON cl.dni = te.dni " +
-                "WHERE ae.localidad = 'Viego' AND vu.fechaSalida = :date";
+        String hql = "SELECT cl.nombre, cl.apellidos, vu.fechaSalida, vu.origen.codigo " +
+                " FROM Cliente cl JOIN TarjetaEmbarque te ON cl.dni = te.cliente.dni " +
+                "JOIN Vuelo vu ON te.vuelo.codigo = vu.codigo " +
+                "WHERE vu.origen.codigo = 100 AND vu.fechaSalida = :date ";
         return utilities.stablishConnection(hql).setParameter("date", date).getResultList().iterator();
 
     }

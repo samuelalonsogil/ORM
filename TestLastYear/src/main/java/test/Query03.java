@@ -16,7 +16,7 @@ public class Query03 {
         Iterator iterator = clienteDAO.listSalirAeropuerto(transformDates.StringToDate( utilities.introduceData("Introduce una fecha") )  );
         while (iterator.hasNext()){
             Object[]row = (Object[]) iterator.next();
-            System.out.println("nombre: " + row[0] + "\napellidos: " + row[1] + "\nnumero_de_tarjetas:" + row[2] +
+            System.out.println("nombre: " + row[0] + "\napellidos: " + row[1] + "\nfecha salida:" + row[2] + "\ncodigo aeropuerto:" + row[3]+
                     "\n----------------------------------------------------------------");
         }
     }
