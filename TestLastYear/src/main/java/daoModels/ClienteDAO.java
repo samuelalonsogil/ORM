@@ -1,5 +1,6 @@
 package daoModels;
 
+import connection.Connection;
 import utilities.Utilities;
 import voModels.Cliente;
 
@@ -8,6 +9,17 @@ import java.util.Iterator;
 public class ClienteDAO {
 
     public Utilities utilities = new Utilities();
+    public Connection myConnection = new Connection();
+
+    /*ej 4*/
+    public Cliente findCliente(String dni){
+        return myConnection.getConnection().find(Cliente.class,dni);
+    }
+
+    public void newCliente(Cliente cliente){
+        utilities.connectionTransactions(cliente);
+
+    }
 
     /*1º) Para fomentar el turismo se quiere regalar un viaje al cliente o clientes que más viajes haya
         realizado (el que tenga 3 o más tarjetas de embarque). Mostrar el nombre completo del cliente
@@ -29,8 +41,3 @@ public class ClienteDAO {
 
     }
 }
-/*select c.
-        from vuelos join tarjetasembarque t on vuelos.vuCodigo = t.teCodVuelo
-        join aeropuertos a on a.aeCodigo = vuelos.vuOrigen
-        join clientes c on c.clDni = t.teDNI
-        where aeLocalidad ='Vigo' and vuFecSalida = '2022-02-20'*/

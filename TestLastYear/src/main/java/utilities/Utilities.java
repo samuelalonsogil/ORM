@@ -20,6 +20,12 @@ public class Utilities {
         return scanner.next();
     }
 
+    public boolean introduceDataBoolean(String data){
+        System.out.println(data);
+        if (data.charAt(0) == 'T') return true;
+        else return false;
+    }
+
     public int introduceDataInt(String data){
         System.out.println(data);
         return scanner.nextInt();

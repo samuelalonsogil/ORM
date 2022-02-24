@@ -29,7 +29,6 @@ public class VehiculoClienteDAO {
     }
 
     public void newAlquiler(VehiculoCliente vehiculoCliente){
-        vehiculoCliente = findAlquiler(vehiculoCliente.getIdVehiculoCliente());
         utilities.connectionTransactions(vehiculoCliente);
 
     }
