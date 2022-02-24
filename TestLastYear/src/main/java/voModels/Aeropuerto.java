@@ -9,16 +9,16 @@ import java.util.Objects;
 public class Aeropuerto {
 
     @Id
-    @Column(name = "aeCodigo")
+    @Column(name = "aeCodigo", nullable = false)
     int codigo;
 
-    @Column(name = "aeNombre", length = 50)
+    @Column(name = "aeNombre", length = 50, nullable = false)
     String nombre;
 
-    @Column(name = "aeLocalidad", length = 30)
+    @Column(name = "aeLocalidad", length = 30, nullable = false)
     String localidad;
 
-    @Column(name = "aePais", length = 30)
+    @Column(name = "aePais", length = 30, nullable = false)
     String pais;
 
     @OneToMany(mappedBy = "origen")

@@ -10,22 +10,22 @@ import java.util.Objects;
 public class Cliente {
 
     @Id
-    @Column(name = "clDni", length = 9)
+    @Column(name = "clDni", length = 9, nullable = false)
     String dni;
 
-    @Column(name = "clNombre", length = 20)
+    @Column(name = "clNombre", length = 20, nullable = false)
     String nombre;
 
-    @Column(name = "clApellidos", length = 30)
+    @Column(name = "clApellidos", length = 30, nullable = false)
     String apellidos;
 
-    @Column(name = "clDireccion", length = 50)
+    @Column(name = "clDireccion", length = 50, nullable = false)
     String direccion;
 
-    @Column(name = "clTelefono")
+    @Column(name = "clTelefono", nullable = false)
     int telefono;
 
-    @Column(name = "clNumTarjeta")
+    @Column(name = "clNumTarjeta", nullable = false)
     int numTarjeta;
 
     @OneToMany(mappedBy = "cliente")

@@ -9,38 +9,82 @@ import java.util.Objects;
 public class Asiento {
 
     @Id
-    @Column(name = "asCodigo")
+    @Column(name = "asCodigo", nullable = false)
     int codigo;
 
-    @Column(name = "asCodAvion")
-    int codAvion;
-
-    @Column(name = "asFila")
+    @Column(name = "asFila", nullable = false)
     int fila;
 
-    @Column(name = "asColumna")
+    @Column(name = "asColumna", nullable = false)
     int columna;
 
-    @Column(name = "asLibre")
+    @Column(name = "asLibre", nullable = false)
     boolean libre;
 
     @OneToMany(mappedBy = "asiento")
     List<TarjetaEmbarque> tarjetaEmbarque;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "avCodigo")
+    @JoinColumn(name = "asCodAvion", nullable = false)
     Avion avion;
 
     public Asiento() {
     }
 
-    public Asiento(int codigo, int codAvion, int fila, int columna, boolean libre, List<TarjetaEmbarque> tarjetaEmbarque, Avion avion) {
+    public Asiento(int codigo, int fila, int columna, boolean libre, List<TarjetaEmbarque> tarjetaEmbarque, Avion avion) {
         this.codigo = codigo;
-        this.codAvion = codAvion;
         this.fila = fila;
         this.columna = columna;
         this.libre = libre;
         this.tarjetaEmbarque = tarjetaEmbarque;
+        this.avion = avion;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    public void setColumna(int columna) {
+        this.columna = columna;
+    }
+
+    public boolean isLibre() {
+        return libre;
+    }
+
+    public void setLibre(boolean libre) {
+        this.libre = libre;
+    }
+
+    public List<TarjetaEmbarque> getTarjetaEmbarque() {
+        return tarjetaEmbarque;
+    }
+
+    public void setTarjetaEmbarque(List<TarjetaEmbarque> tarjetaEmbarque) {
+        this.tarjetaEmbarque = tarjetaEmbarque;
+    }
+
+    public Avion getAvion() {
+        return avion;
+    }
+
+    public void setAvion(Avion avion) {
         this.avion = avion;
     }
 
@@ -49,19 +93,18 @@ public class Asiento {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Asiento asiento = (Asiento) o;
-        return codigo == asiento.codigo && codAvion == asiento.codAvion && fila == asiento.fila && columna == asiento.columna && libre == asiento.libre && Objects.equals(tarjetaEmbarque, asiento.tarjetaEmbarque) && Objects.equals(avion, asiento.avion);
+        return codigo == asiento.codigo && fila == asiento.fila && columna == asiento.columna && libre == asiento.libre && Objects.equals(tarjetaEmbarque, asiento.tarjetaEmbarque) && Objects.equals(avion, asiento.avion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo, codAvion, fila, columna, libre, tarjetaEmbarque, avion);
+        return Objects.hash(codigo, fila, columna, libre, tarjetaEmbarque, avion);
     }
 
     @Override
     public String toString() {
         return "Asiento{" +
                 "codigo=" + codigo +
-                ", codAvion=" + codAvion +
                 ", fila=" + fila +
                 ", columna=" + columna +
                 ", libre=" + libre +

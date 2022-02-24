@@ -9,19 +9,19 @@ import java.util.Objects;
 public class TarjetaEmbarque {
 
     @Id
-    @Column(name = "teCodigo")
+    @Column(name = "teCodigo", nullable = false)
     int teCodigo;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teDNI")
+    @JoinColumn(name = "teDNI", nullable = false)
     Cliente cliente;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teCodAsiento")
+    @JoinColumn(name = "teCodAsiento", nullable = false)
     Asiento asiento;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teCodVuelo")
+    @JoinColumn(name = "teCodVuelo", nullable = false)
     Vuelo vuelo;
 
     public TarjetaEmbarque() {

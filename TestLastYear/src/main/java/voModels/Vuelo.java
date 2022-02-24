@@ -10,25 +10,27 @@ import java.util.Objects;
 public class Vuelo {
 
     @Id
-    @Column(name = "vuCodigo")
+    @Column(name = "vuCodigo", nullable = false)
     int codigo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vuCodAvion")
-    Avion codAvion;
-
-    @Column(name = "vuFecSalida")
+    @Column(name = "vuFecSalida", nullable = false)
+    @Temporal(TemporalType.DATE)
     Date fechaSalida;
 
-    @Column(name = "vuFecLlegada")
+    @Column(name = "vuFecLlegada", nullable = false)
+    @Temporal(TemporalType.DATE)
     Date fechaLlegada;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="vuOrigen")
+    @JoinColumn(name = "vuCodAvion", nullable = false)
+    Avion avion;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="vuOrigen", nullable = false)
     Aeropuerto origen;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="vuDestino")
+    @JoinColumn(name="vuDestino", nullable = false)
     Aeropuerto destino;
 
     @OneToMany(mappedBy = "vuelo")
@@ -37,11 +39,11 @@ public class Vuelo {
     public Vuelo() {
     }
 
-    public Vuelo(int codigo, Avion codAvion, Date fechaSalida, Date fechaLlegada, Aeropuerto origen, Aeropuerto destino, List<TarjetaEmbarque> tarjetasEmbarque) {
+    public Vuelo(int codigo, Date fechaSalida, Date fechaLlegada, Avion avion, Aeropuerto origen, Aeropuerto destino, List<TarjetaEmbarque> tarjetasEmbarque) {
         this.codigo = codigo;
-        this.codAvion = codAvion;
         this.fechaSalida = fechaSalida;
         this.fechaLlegada = fechaLlegada;
+        this.avion = avion;
         this.origen = origen;
         this.destino = destino;
         this.tarjetasEmbarque = tarjetasEmbarque;
@@ -53,14 +55,6 @@ public class Vuelo {
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
-    }
-
-    public Avion getCodAvion() {
-        return codAvion;
-    }
-
-    public void setCodAvion(Avion codAvion) {
-        this.codAvion = codAvion;
     }
 
     public Date getFechaSalida() {
@@ -77,6 +71,14 @@ public class Vuelo {
 
     public void setFechaLlegada(Date fechaLlegada) {
         this.fechaLlegada = fechaLlegada;
+    }
+
+    public Avion getAvion() {
+        return avion;
+    }
+
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
 
     public Aeropuerto getOrigen() {
@@ -108,21 +110,21 @@ public class Vuelo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vuelo vuelo = (Vuelo) o;
-        return codigo == vuelo.codigo && Objects.equals(codAvion, vuelo.codAvion) && Objects.equals(fechaSalida, vuelo.fechaSalida) && Objects.equals(fechaLlegada, vuelo.fechaLlegada) && Objects.equals(origen, vuelo.origen) && Objects.equals(destino, vuelo.destino) && Objects.equals(tarjetasEmbarque, vuelo.tarjetasEmbarque);
+        return codigo == vuelo.codigo && Objects.equals(fechaSalida, vuelo.fechaSalida) && Objects.equals(fechaLlegada, vuelo.fechaLlegada) && Objects.equals(avion, vuelo.avion) && Objects.equals(origen, vuelo.origen) && Objects.equals(destino, vuelo.destino) && Objects.equals(tarjetasEmbarque, vuelo.tarjetasEmbarque);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo, codAvion, fechaSalida, fechaLlegada, origen, destino, tarjetasEmbarque);
+        return Objects.hash(codigo, fechaSalida, fechaLlegada, avion, origen, destino, tarjetasEmbarque);
     }
 
     @Override
     public String toString() {
         return "Vuelo{" +
                 "codigo=" + codigo +
-                ", codAvion=" + codAvion +
                 ", fechaSalida=" + fechaSalida +
                 ", fechaLlegada=" + fechaLlegada +
+                ", avion=" + avion +
                 ", origen=" + origen +
                 ", destino=" + destino +
                 ", tarjetasEmbarque=" + tarjetasEmbarque +

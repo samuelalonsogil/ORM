@@ -1,9 +1,7 @@
 package voModels;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,18 +9,26 @@ import java.util.Objects;
 public class Avion {
 
     @Id
-    @Column(name = "avCodigo")
+    @Column(name = "avCodigo", nullable = false)
     int codigo;
 
-    @Column(name = "avModelo", length = 30)
+    @Column(name = "avModelo", length = 30, nullable = false)
     String modelo;
+
+    @OneToMany(mappedBy = "avion")
+    public List<Asiento> asientos;
+
+    @OneToMany(mappedBy = "avion")
+    public List<Vuelo> vuelos;
 
     public Avion() {
     }
 
-    public Avion(int codigo, String modelo) {
+    public Avion(int codigo, String modelo, List<Asiento> asientos, List<Vuelo> vuelos) {
         this.codigo = codigo;
         this.modelo = modelo;
+        this.asientos = asientos;
+        this.vuelos = vuelos;
     }
 
     public int getCodigo() {
@@ -41,17 +47,33 @@ public class Avion {
         this.modelo = modelo;
     }
 
+    public List<Asiento> getAsientos() {
+        return asientos;
+    }
+
+    public void setAsientos(List<Asiento> asientos) {
+        this.asientos = asientos;
+    }
+
+    public List<Vuelo> getVuelos() {
+        return vuelos;
+    }
+
+    public void setVuelos(List<Vuelo> vuelos) {
+        this.vuelos = vuelos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Avion avion = (Avion) o;
-        return codigo == avion.codigo && Objects.equals(modelo, avion.modelo);
+        return codigo == avion.codigo && Objects.equals(modelo, avion.modelo) && Objects.equals(asientos, avion.asientos) && Objects.equals(vuelos, avion.vuelos);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codigo, modelo);
+        return Objects.hash(codigo, modelo, asientos, vuelos);
     }
 
     @Override
@@ -59,6 +81,8 @@ public class Avion {
         return "Avion{" +
                 "codigo=" + codigo +
                 ", modelo='" + modelo + '\'' +
+                ", asientos=" + asientos +
+                ", vuelos=" + vuelos +
                 '}';
     }
 }
